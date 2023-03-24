@@ -1,7 +1,7 @@
 # Winter Workterm - Vorne (Andon) Database Project
 
 
-## This is a work term project using camera to develop a system that pulls data from Vorne Andon system, convert to a readable format, and export to an excel file that is emailed out periodically.   
+## This is a work term project to develop a system that pulls data from Vorne Andon system, convert to a readable format, and export to an excel file that is emailed out periodically.   
 
 ### Our process:
 
