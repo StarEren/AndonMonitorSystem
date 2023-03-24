@@ -5,7 +5,7 @@ url = 'http://10.10.12.103/sql-request.do'
 
 params = {
     'response_type': 'application/json',
-    'sql_statement': 'SELECT * FROM timeline_stream LIMIT 10;'
+    'sql_statement': 'select reason, start_time from timeline_stream'
 }
 
 # Make the API request
@@ -23,6 +23,8 @@ data = response.json()
 if data[0]['error']:
     print(f'Request failed with error: {data[0]["error"]}')
     exit()
+
+# print(data)
 
 # Extract the data from the response
 rows = data[0]['data']
