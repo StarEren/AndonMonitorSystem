@@ -5,7 +5,7 @@ url = 'http://10.10.12.103/sql-request.do'
 
 params = {
     'response_type': 'application/json',
-    'sql_statement': 'select reason, start_time from timeline_stream'
+    'sql_statement': 'select * from timeline_stream'
 }
 
 # Make the API request
