@@ -7,13 +7,13 @@
 
 - Setting up 3 different database connections using Vorne's API.
 - Pulling data using LESQL query parameters.
-- Converting the data from integer code to a string.
-- Placing data into excel file.
+- Decoding the data.
+- Exporting data into excel file.
 - Automatic email of excel file that is sent out periodically.
 
 ### Notes:
 
-- 3rd column is time in seconds, starting from Jan 1, 1990. Can be converted to current timestamp with python program that I've made.
+- 3rd column is time in seconds, starting from Jan 1, 1990.
 - 7th column is the error codes. CSV file of error code definitions be found in repo.
 
 ### Requirements:
@@ -31,5 +31,4 @@ $ cd <directory-name>
 # Install the requirements to run the program
 $ pip install <packages-name>
 # Start the program and have fun!!!
-$ python main.py
 ```
