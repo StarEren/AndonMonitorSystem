@@ -1,4 +1,3 @@
-import datetime
 import requests
 
 # Set up the API endpoint and parameters
