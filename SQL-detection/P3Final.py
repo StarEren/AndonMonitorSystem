@@ -1,6 +1,14 @@
 import requests
 import datetime
 import openpyxl
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.application import MIMEApplication
+
+#########################################  DATABASE CONNECTION  ####################################################
+
+print("Forming connection with database")
 
 # Set up the API endpoint and parameters
 url = 'http://10.10.12.103/sql-request.do'
@@ -28,6 +36,11 @@ if data[0]['error']:
 
 # Extract the data from the response
 rows = data[0]['data']
+
+#########################################  ERROR ALGORITHM  ####################################################
+
+
+print('Calculating error hours')
 
 # Initialize dictionary to store error times
 error_times = {}
@@ -71,8 +84,14 @@ for error_code, date_times in error_times.items():
     for date, total_time in date_times.items():
         print(f'Error code {error_code} on {date}: {total_time:.2f} hours')
 
+
+#########################################  EXPORT TO EXCEL FILE  ####################################################
+
+
+print("Extracting data to excel file")
+
 # Open the Excel file
-workbook = openpyxl.load_workbook('SQL-detection\Copy of Brian Downtime Report 2018 (002) Eren.xlsx')
+workbook = openpyxl.load_workbook('SQL-detection\AndonReport.xlsx')
 worksheet = workbook.active
 
 # Define a dictionary to map day numbers to column letters
@@ -82,8 +101,8 @@ day_to_column = {1: 'C', 2: 'D', 3: 'E', 4: 'F', 5: 'G', 6: 'H', 7: 'I', 8: 'J',
                  29: 'AE', 30: 'AF', 31: 'AG'}
 
 # Define a dictionary to map error codes to row numbers
-error_to_row = {0 : 99, 1000: 91, 1001: 94, 1002: 93, 1003 : 95, 1004: 92, 1005 : 96, 1006 : 88, 1007 : 87,
-                 1008 : 85, 1009 : 86, 1010 : 89, 1011 : 81, 1012 : 83, 1013 : 79, 1014 : 82, 1015 : 80, 1016 : 97}
+error_to_row = {'0' : 99, '1000' : 91, '1001' : 94, '1002' : 93, '1003' : 95, '1004' : 92, '1005' : 96, '1006' : 88, '1007' : 87,
+                 '1008' : 85, '1009' : 86, '1010' : 89, '1011' : 81, '1012' : 83, '1013' : 79, '1014' : 82, '1015' : 80, '1016' : 97}
 
 # Iterate over the error times dictionary and update the corresponding cells in the Excel file
 for error_code, date_times in error_times.items():
@@ -104,4 +123,43 @@ for error_code, date_times in error_times.items():
         cell.value = total_time
 
 # Save the Excel file
-workbook.save('SQL-detection\Copy of Brian Downtime Report 2018 (002) Eren.xlsx')
+workbook.save('SQL-detection\AndonReport.xlsx')
+
+print("Forming forming email connection")
+
+#############################################  SENDING EMAIL   ####################################################
+
+# create message object instance
+msg = MIMEMultipart()
+to_list = ["eren.yilmaz@martinrea.com"]
+# setup the parameters of the message
+password = "wmjurkjfflnpltjk"   # VERY SECURE
+msg['From'] = "andonreportshydroform@gmail.com"
+msg['To'] = ",".join(to_list)
+msg['Subject'] = "Andon Report"
+
+# add in the message body
+msg.attach(MIMEText("Here is the andon report"))
+
+# attach a file
+with open("SQL-detection\AndonReport.xlsx", "rb") as f:
+    attach = MIMEApplication(f.read(),_subtype="txt")
+    attach.add_header('Content-Disposition','attachment',filename=str("AndonReport.xlsx"))
+    msg.attach(attach)
+
+# create server
+server = smtplib.SMTP('smtp.gmail.com', 587)
+
+# start TLS for security
+server.starttls()
+
+# Login
+server.login(msg['From'], password)
+
+# send the message via the server.
+server.sendmail(msg['From'], to_list, msg.as_string())
+
+# terminate the SMTP session
+server.quit()
+
+print("Email sent")

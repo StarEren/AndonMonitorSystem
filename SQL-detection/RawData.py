@@ -32,11 +32,4 @@ rows = data[0]['data']
 error_timestamps = {}
 
 for row in rows:
-    # Extract the data from the response
-    error_code = row[0]
-    start_time = float(row[1])
-    if error_code:
-        days, seconds = divmod(start_time, 86400)
-        base_date = datetime.datetime(1900, 1, 1)
-        timestamp = base_date + datetime.timedelta(days=days, seconds=seconds)
-        print(f'{error_code}: {timestamp}')
+    print(row)
