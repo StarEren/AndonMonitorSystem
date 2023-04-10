@@ -2,15 +2,10 @@ import datetime
 import requests
 import openpyxl
 
-# print("Please close the excel file in...")
-# countdown_time = 10
+# Script is not time sensitive or does not need to be scaled. Optimization not required, risk of not working when script is changed.
 
-# while countdown_time > 0:
-#     print(countdown_time)
-#     time.sleep(1)
-#     countdown_time -= 1
+############################################# DATABASE CONNECTION AND QEURY #############################################
 
-# print("Starting Refresh...")
 
 # Define the start and end dates for this month
 today = datetime.datetime.now()
@@ -70,6 +65,8 @@ run_durations2 = {'Day': {}, 'Afternoon': {}, 'Night': {}}
 down_durations2 = {'Day': {}, 'Afternoon': {}, 'Night': {}}
 run_durations3 = {'Day': {}, 'Afternoon': {}, 'Night': {}}
 down_durations3 = {'Day': {}, 'Afternoon': {}, 'Night': {}}
+
+######################################## DATA TRANSFORMATION AND SORTING ALGORITHM ########################################
 
 for row in rows1:
     start_time = int(float(row[0]))
@@ -160,6 +157,8 @@ for row in rows3:
             down_durations3[shift][reason] = down_durations3[shift].get(reason, {})
             down_durations3[shift][reason][timestamp.date()] = down_durations3[shift][reason].get(timestamp.date(), 0) + float(row[3]) 
 
+####################################################### PRINT DATA #######################################################
+
 # print("\n              Date, Reason: Duration (hours)")
 # print("\n10.10.12.101\n\n       Run durations:")
 # for shift in run_durations1:
@@ -259,7 +258,9 @@ for row in rows3:
 #             print(f'              {date}, {reason}: {int(hours):02d}:{int(minutes):02d}:{int(seconds):02d}')
 
 
-print('---------------')
+# print('---------------')
+
+################################################## EXPORT TO EXCEL ##################################################
 
 # Define a dictionary to map day numbers to column letters
 day_to_column = {1: 'C', 2: 'D', 3: 'E', 4: 'F', 5: 'G', 6: 'H', 7: 'I', 8: 'J', 9: 'K', 10: 'L',
@@ -438,5 +439,3 @@ for shift in run_durations3:
 
 # Save the workbook
 workbook.save(file_path)
-
-# print("Refresh Completed.")
