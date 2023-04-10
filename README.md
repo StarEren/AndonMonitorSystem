@@ -11,7 +11,7 @@ User-friendly for easy navigation and understanding
 
 ### Getting Started
 
-Run Installation.bat
+Run Installation_RunAsAdmin.bat
 Run Refresh.bat
 
 ### Technologies Used
