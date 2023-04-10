@@ -1,9 +1,6 @@
 import datetime
 import requests
 import openpyxl
-import time
-import os
-import time
 
 # print("Please close the excel file in...")
 # countdown_time = 10

@@ -13,7 +13,7 @@ taskkill /f /im excel.exe >nul
 echo "Starting refresh..."
 python "%script_path%"
 
-echo "Opening Excel..."
+echo "Opening Excel...
 start "" "%excel_path%"
 
 endlocal
