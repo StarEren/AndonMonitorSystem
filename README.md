@@ -14,12 +14,8 @@ User-friendly for easy navigation and understanding
 
 ### Getting Started
 
-<<<<<<< HEAD
 Run Installation_RunAsAdmin.bat
-=======
-Run Installation.bat
 
->>>>>>> 2126a1e9e88f35f32589ade0cdc5f2500467c23c
 Run Refresh.bat
 
 ### Technologies Used

@@ -308,14 +308,21 @@ for shift in down_durations1:
                 # Get the column letter for the day number
                 day_column = day_to_column[day_number]
 
-                # Get the row number for the error code
-                reason_rowfinal1 = downreason_to_row1[reason]
+                try:
+                    # Get the row number for the error code
+                    reason_rowfinal1 = downreason_to_row1[reason]
 
-                # Get the cell to write to
-                cell = worksheet[f'{day_column}{reason_rowfinal1}']
+                    # Get the cell to write to
+                    cell = worksheet[f'{day_column}{reason_rowfinal1}']
 
-                # Write the total time to the cell
-                cell.value = f"{int(duration//3600):02d}:{int((duration%3600)//60):02d}:{int(duration%60):02d}"
+                    hours = duration // 3600
+                    minutes = (duration % 3600) // 60
+                    seconds = duration % 60
+                    cell.value = f"{int(hours):02d}:{int(minutes):02d}:{int(seconds):02d}"
+
+                except KeyError:
+                    # Ignore and continue onto the next iteration when key not found
+                    continue
 
 # Iterate over the error times dictionary and update the corresponding cells in the Excel file
 for shift in down_durations2:
@@ -323,6 +330,7 @@ for shift in down_durations2:
         for date, duration in durations.items():
             sheet_name = shift_to_sheet.get(shift)
             if sheet_name:
+                
                 worksheet = workbook[sheet_name]
 
                 # Extract the day number from the date
@@ -331,21 +339,30 @@ for shift in down_durations2:
                 # Get the column letter for the day number
                 day_column = day_to_column[day_number]
 
-                # Get the row number for the error code
-                reason_rowfinal1 = downreason_to_row2[reason]
+                try:
+                    # Get the row number for the error code
+                    reason_rowfinal2 = downreason_to_row2[reason]
 
-                # Get the cell to write to
-                cell = worksheet[f'{day_column}{reason_rowfinal1}']
+                    # Get the cell to write to
+                    cell = worksheet[f'{day_column}{reason_rowfinal2}']
 
-                # Write the total time to the cell
-                cell.value = f"{int(duration//3600):02d}:{int((duration%3600)//60):02d}:{int(duration%60):02d}"
+                    # Write the total time to the cell
+                    hours = duration // 3600
+                    minutes = (duration % 3600) // 60
+                    seconds = duration % 60
+                    cell.value = f"{int(hours):02d}:{int(minutes):02d}:{int(seconds):02d}"
+
+                except KeyError:
+                    # Ignore and continue onto the next iteration when key not found
+                    continue
 
 # Iterate over the error times dictionary and update the corresponding cells in the Excel file
-for shift in down_durations1:
+for shift in down_durations3:
     for reason, durations in down_durations3[shift].items():
         for date, duration in durations.items():
             sheet_name = shift_to_sheet.get(shift)
             if sheet_name:
+                
                 worksheet = workbook[sheet_name]
 
                 # Extract the day number from the date
@@ -354,14 +371,22 @@ for shift in down_durations1:
                 # Get the column letter for the day number
                 day_column = day_to_column[day_number]
 
-                # Get the row number for the error code
-                reason_rowfinal1 = downreason_to_row3[reason]
+                try:
+                    # Get the row number for the error code
+                    reason_rowfinal3 = downreason_to_row3[reason]
 
-                # Get the cell to write to
-                cell = worksheet[f'{day_column}{reason_rowfinal1}']
+                    # Get the cell to write to
+                    cell = worksheet[f'{day_column}{reason_rowfinal3}']
 
-                # Write the total time to the cell
-                cell.value = f"{int(duration//3600):02d}:{int((duration%3600)//60):02d}:{int(duration%60):02d}"
+                    # Write the total time to the cell                    
+                    hours = duration // 3600
+                    minutes = (duration % 3600) // 60
+                    seconds = duration % 60
+                    cell.value = f"{int(hours):02d}:{int(minutes):02d}:{int(seconds):02d}"
+
+                except KeyError:
+                    # Ignore and continue onto the next iteration when key not found
+                    continue
 
                 # Save the workbook
 
@@ -380,14 +405,22 @@ for shift in run_durations1:
                 # Get the column letter for the day number
                 day_column = day_to_column[day_number]
 
-                # Get the row number for the error code
-                reason_rowfinal1 = runtotal_to_row1[reason]
+                try:
+                    # Get the row number for the error code
+                    reason_rowfinal1 = runtotal_to_row1[reason]
 
-                # Get the cell to write to
-                cell = worksheet[f'{day_column}{reason_rowfinal1}']
+                    # Get the cell to write to
+                    cell = worksheet[f'{day_column}{reason_rowfinal1}']
 
-                # Write the total time to the cell
-                cell.value = f"{int(duration//3600):02d}:{int((duration%3600)//60):02d}:{int(duration%60):02d}"
+                    # Write the total time to the cell
+                    hours = duration // 3600
+                    minutes = (duration % 3600) // 60
+                    seconds = duration % 60
+                    cell.value = f"{int(hours):02d}:{int(minutes):02d}:{int(seconds):02d}"
+
+                except KeyError:
+                    # Ignore and continue onto the next iteration when key not found
+                    continue
 
 # Iterate over the error times dictionary and update the corresponding cells in the Excel file
 for shift in run_durations2:
@@ -404,14 +437,22 @@ for shift in run_durations2:
                 # Get the column letter for the day number
                 day_column = day_to_column[day_number]
 
-                # Get the row number for the error code
-                reason_rowfinal1 = runtotal_to_row2[reason]
+                try:
+                    # Get the row number for the error code
+                    reason_rowfinal2 = runtotal_to_row2[reason]
 
-                # Get the cell to write to
-                cell = worksheet[f'{day_column}{reason_rowfinal1}']
+                    # Get the cell to write to
+                    cell = worksheet[f'{day_column}{reason_rowfinal2}']
 
-                # Write the total time to the cell
-                cell.value = f"{int(duration//3600):02d}:{int((duration%3600)//60):02d}:{int(duration%60):02d}"
+                    # Write the total time to the cell
+                    hours = duration // 3600
+                    minutes = (duration % 3600) // 60
+                    seconds = duration % 60
+                    cell.value = f"{int(hours):02d}:{int(minutes):02d}:{int(seconds):02d}"
+
+                except KeyError:
+                    # Ignore and continue onto the next iteration when key not found
+                    continue
 
 # Iterate over the error times dictionary and update the corresponding cells in the Excel file
 for shift in run_durations3:
@@ -428,14 +469,22 @@ for shift in run_durations3:
                 # Get the column letter for the day number
                 day_column = day_to_column[day_number]
 
-                # Get the row number for the error code
-                reason_rowfinal1 = runtotal_to_row3[reason]
+                try:
+                    # Get the row number for the error code
+                    reason_rowfinal3 = runtotal_to_row3[reason]
 
-                # Get the cell to write to
-                cell = worksheet[f'{day_column}{reason_rowfinal1}']
+                    # Get the cell to write to
+                    cell = worksheet[f'{day_column}{reason_rowfinal3}']
 
-                # Write the total time to the cell
-                cell.value = f"{int(duration//3600):02d}:{int((duration%3600)//60):02d}:{int(duration%60):02d}"
+                    # Write the total time to the cell
+                    hours = duration // 3600
+                    minutes = (duration % 3600) // 60
+                    seconds = duration % 60
+                    cell.value = f"{int(hours):02d}:{int(minutes):02d}:{int(seconds):02d}"
+
+                except KeyError:
+                    # Ignore and continue onto the next iteration when key not found
+                    continue
 
 # Save the workbook
 workbook.save(file_path)
