@@ -5,18 +5,25 @@ Andon Monitor System is a web application that displays real-time data on produc
 
 ### Features
 Real-time monitoring of production line status
+
 Customizable alerts for different issues
+
 Historical data tracking and analysis
+
 User-friendly for easy navigation and understanding
 
 ### Getting Started
 
 Run Installation.bat
+
 Run Refresh.bat
 
 ### Technologies Used
 Python
+
 Web HTTP
+
 SQL
+
 Openpyxl
 
