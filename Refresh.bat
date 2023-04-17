@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-set "script=AndonMonitorSystem.py"
+set "script=AndonReport.py"
 set "script_path=%~dp0\%script%"
 
 set "excel_file=AndonReport.xlsx"
