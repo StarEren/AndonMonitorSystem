@@ -7,7 +7,7 @@ import openpyxl
 # Set up the API endpoint and parameters
 urls = [
     'http://10.10.12.101/sql-request.do',
-    #'http://10.10.12.102/sql-request.do',
+    'http://10.10.12.102/sql-request.do',
     'http://10.10.12.103/sql-request.do',
 ]
 
@@ -38,7 +38,7 @@ down_durations = [{'Day': {}, 'Afternoon': {}, 'Night': {}} for _ in range(3)]
 # Define the down_count dictionary
 down_count = {}
 
-for i in range(2):
+for i in range(3):
 
     # Make the API request
     response = requests.post(urls[i], data=params)
@@ -129,13 +129,13 @@ countday_to_column = {1: 'D', 2: 'F', 3: 'H', 4: 'J', 5: 'L', 6: 'N', 7: 'P', 8:
 # Define a list of dictionaries to map reasons, where each dictionary corresponds to a different database
 downreason_to_row = [
     {'0': 57, '1000': 49, '1001': 52, '1002': 51, '1003': 53, '1004': 50, '1005': 54, '1006': 46, '1007': 45, '1008': 43, '1009': 44, '1010': 47, '1011': 39, '1012': 41, '1013': 37, '1014': 40, '1015': 38, '1016': 55},
-    #{'0': 79, '1000': 71, '1001': 74, '1002': 73, '1003': 75, '1004': 72, '1005': 76, '1006': 68, '1007': 67, '1008': 65, '1009': 66, '1010': 69, '1011': 61, '1012': 63, '1013': 59, '1014': 62, '1015': 60, '1016': 77},
+    {'0': 79, '1000': 71, '1001': 74, '1002': 73, '1003': 75, '1004': 72, '1005': 76, '1006': 68, '1007': 67, '1008': 65, '1009': 66, '1010': 69, '1011': 61, '1012': 63, '1013': 59, '1014': 62, '1015': 60, '1016': 77},
     {'0': 101, '1000': 93, '1001': 96, '1002': 95, '1003': 97, '1004': 94, '1005': 98, '1006': 90, '1007': 91, '1008': 87, '1009': 88, '1010': 91, '1011': 83, '1012': 85, '1013': 81, '1014': 84, '1015': 82, '1016': 99}
 ]
 
 runtotal_to_row = [
     {'0': 6},
-    #{'0': 9},
+    {'0': 9},
     {'0': 12}
 ]
 
@@ -146,7 +146,7 @@ shift_to_sheet = {"Day": "Day", "Afternoon": "Afternoon", "Night": "Night"}
 workbook = openpyxl.load_workbook(file_path)
 
 # Iterate over the databases, shifts, and reasons
-for i in range(2):
+for i in range(3):
     for shift in ["Day", "Afternoon", "Night"]:
         for reason in downreason_to_row[i]:
 
